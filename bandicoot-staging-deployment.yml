@@ -23,9 +23,9 @@ spec:
       containers:
         - name: bandicoot-staging
           image: gcr.io/kuar-demo/kuard-amd64:green
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
+          #resources:
+          #limits:
+          #memory: "128Mi"
+          #cpu: "500m"
           ports:
             - containerPort: 8080

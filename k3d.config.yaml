@@ -1,0 +1,8 @@
+# k3d.config.yaml
+
+apiVersion: k3d.io/v1alpha3
+kind: Simple
+name: k3d-cluster
+servers: 1
+agents: 2
+image: rancher/k3s:v1.20.4-k3s1
