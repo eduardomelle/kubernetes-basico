@@ -4,6 +4,10 @@ metadata:
   name: kuard
 spec:
   replicas: 3
+  # Fazemos rollouts diários, portanto, limitaremos o histórico de
+  # versões para duas semanas, pois não pretendemos fazer rollouts
+  # para versões anteriores a esse período.
+  revisionHistoryLimit: 14
   selector:
     matchLabels:
       run: kuard
@@ -12,11 +16,11 @@ spec:
       labels:
         run: kuard
       annotations:
-        kubernetes.io/change-cause: "Update to green kuard"
+        kubernetes.io/change-cause: "Update to blue kuard"
     spec:
       containers:
         - name: kuard
-          image: gcr.io/kuar-demo/kuard-amd64:green
+          image: gcr.io/kuar-demo/kuard-amd64:blue
           imagePullPolicy: Always
           resources:
             limits:
