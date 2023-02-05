@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: queue
-          image: gcr.io/kuar-demo/kuard-amd64:blue
+          image: gcr.io/kuar-demo/kuard-amd64:1
           imagePullPolicy: Always
           resources:
             limits:
