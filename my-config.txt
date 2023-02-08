@@ -1,0 +1,4 @@
+# Este é um arquivo de configuração de exemplo que poderia ser
+# usado para configurar uma aplicação
+paratemer1 = value1
+parameter2 = value2
