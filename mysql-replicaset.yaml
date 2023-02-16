@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mysql
+  # Rótulos para que possamos vincular um Service a esse Pod
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: database
+          image: mysql
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: 1
+          ports:
+            - containerPort: 3306
+          env:
+            # Varáveis de ambiente não são uma boa prática no que concerne à segurança, mas nós as estamos usando para que o exemplo seja mais conciso.
+            # Consulte o capítulo 11 para opções mais apropriadas.
+            - name: MYSQL_ROOT_PASSWORD
+              value: "1234"
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+          volumeMounts:
+            - name: database
+              # /var/lib/mysql é o local em que o MySQL armazena seus bancos de dados
+              mountPath: "/var/lib/mysql"
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
