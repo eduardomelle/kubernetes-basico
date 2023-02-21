@@ -1,0 +1,21 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: kuar-validator
+webhooks:
+  - name: validator.kuar.com
+    rules:
+      - apiGroups:
+          - "beta.kuar.com"
+      - apiVersions:
+          - "v1"
+      - operations:
+          - "CREATE"
+      - resources:
+          - "loadtests"
+    clientConfig:
+      # Substitua pelo endereço IP apropriado para o seu webhook
+      url: https://192.168.1.233:8080
+      # Deve ser o certificado CA codificado com base64 para o seu cluster;
+      # você poderá encontrá-lo em seu arquivo ${KUBECONFIG}
+      caBundle: REPLACE
