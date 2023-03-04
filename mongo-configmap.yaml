@@ -29,7 +29,7 @@ data:
     echo "connected to remote."
 
     if [[ "${HOSTNAME}" != 'mongo-0' ]]; then
-      until /usr/bin/mongo --host=${HOST} --eval="printjson(rs.status())" grep -v "no replset config has been received"; do
+      until /usr/bin/mongo --host=${HOST} --eval="printjson(rs.status())" | grep -v "no replset config has been received"; do
         echo "waiting for replication set initialization"
         sleep 2
       done
@@ -40,7 +40,7 @@ data:
     if [[ "${HOSTNAME}" == 'mongo-0' ]]; then
       echo "initializing replica set"
       /usr/bin/mongo --eval="printjson(rs.initiate({ '_id': 'rs0', 'members': [{ '_id': 0, 'host': 'mongo-0.mongo:27017' }] }))"
-    if
+    fi
     echo "initialized"
 
     while true; do

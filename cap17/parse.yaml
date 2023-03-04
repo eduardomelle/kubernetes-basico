@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parse-server
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: parse-server
+  template:
+    metadata:
+      labels:
+        run: parse-server
+    spec:
+      containers:
+        - name: parse-server
+          image: eduardomelle/parse-server:v1
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: PARSE_SERVER_DATABASE_URI
+              value: "mongodb://mongodb.mongo:27017/admin"
+            - name: PARSE_SERVER_APP_ID
+              value: my-app-id
+            - name: PARSE_SERVER_MASTER_KEY
+              value: my-master-key
