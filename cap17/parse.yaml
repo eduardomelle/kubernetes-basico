@@ -16,14 +16,11 @@ spec:
       containers:
         - name: parse-server
           image: eduardomelle/parse-server:v1
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
           env:
             - name: PARSE_SERVER_DATABASE_URI
-              value: "mongodb://mongodb.mongo:27017/admin"
+              value: "mongodb://mongo-service:30740/dev"
             - name: PARSE_SERVER_APP_ID
               value: my-app-id
             - name: PARSE_SERVER_MASTER_KEY
               value: my-master-key
+          imagePullPolicy: Always
