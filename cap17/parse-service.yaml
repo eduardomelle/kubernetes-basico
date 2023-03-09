@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo
+  name: parse-service
+  namespace: default
 spec:
   selector:
-    app: mongo
+    run: parse-server
   ports:
-    - port: 27017
-      targetPort: 27017
+    - port: 1337
+      targetPort: 1337
+      protocol: TCP

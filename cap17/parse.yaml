@@ -18,7 +18,7 @@ spec:
           image: eduardomelle/parse-server:v1
           env:
             - name: PARSE_SERVER_DATABASE_URI
-              value: "mongodb://mongo-service:30740/dev"
+              value: "mongodb://test:test%40123@localhost:27017/?authSource=admin&readPreference=primary&ssl=false&directConnection=true"
             - name: PARSE_SERVER_APP_ID
               value: my-app-id
             - name: PARSE_SERVER_MASTER_KEY
