@@ -40,11 +40,14 @@ spec:
             defaultMode: 420
             name: redis-config
           name: config
-        - emptyDir:
-          name: data
+        - name: data
+          emptyDir:
+            sizeLimit: 1Gi
         - name: sentinel-config
-          hostPath:
-            # directory location on host
-            path: /data/redis-config
-            # this field is optional
-            type: Directory
+          #hostPath:
+          # directory location on host
+          #path: /mnt/nfs_share
+          # this field is optional
+          #type: Directory
+          persistentVolumeClaim:
+            claimName: sources-volume-claim
